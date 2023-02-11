@@ -1,13 +1,17 @@
+import { Provider } from 'react-redux';
 import './App.css';
 import Body from './components/Body';
 import Head from './components/Head';
+import store from './utils/store';
 
 const App = () => {
   return (
-    <div>
-      <Head />
-      <Body />
-    </div>
+    <Provider store={store}>
+      <div>
+        <Head />
+        <Body />
+      </div>
+    </Provider>
   );
 };
 
