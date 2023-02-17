@@ -2,7 +2,6 @@ import React from 'react';
 import millify from 'millify';
 
 const VideoCard = ({ info }) => {
-  console.log(info);
   const { snippet, statistics } = info;
   const { channelTitle, title, thumbnails } = snippet;
 

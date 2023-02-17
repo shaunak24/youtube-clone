@@ -1,0 +1,30 @@
+export const searchSuggestionsResponse = [
+  'iphone',
+  [
+    'iphone 14',
+    'iphone ringtone',
+    'iphone 14 pro max',
+    'iphone',
+    'iphone 13',
+    'iphone 15',
+    'iphone 11',
+    'iphone 12',
+    'iphone 14 pro',
+    'iphone 15 pro max',
+  ],
+  [],
+  {
+    'google:suggestsubtypes': [
+      [512, 433],
+      [512, 433, 131],
+      [512, 433],
+      [512, 433, 131],
+      [512, 433, 131],
+      [512, 433, 131],
+      [512, 433, 131],
+      [512, 433, 131],
+      [512, 433],
+      [512, 433, 131],
+    ],
+  },
+];

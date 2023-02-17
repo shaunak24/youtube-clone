@@ -1,10 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toggleMenu } from '../utils/appSlice';
+import { YOUTUBE_SEARCH_SUGGESTIONS_API } from '../utils/constants';
 
 const Head = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchSuggestions, setSearchSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const dispatch = useDispatch();
+
+  // debouncing
+  useEffect(() => {
+    // make API call after every key press
+    // but decline it iff difference < 200ms
+    const timer = setTimeout(() => getSearchSuggestions(), 200);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchQuery]);
+
+  const getSearchSuggestions = async () => {
+    if (!searchQuery) {
+      setSearchSuggestions([]);
+      return;
+    }
+    const data = await fetch(YOUTUBE_SEARCH_SUGGESTIONS_API + searchQuery);
+    const json = await data.json();
+    setSearchSuggestions(json[1]);
+  };
 
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
@@ -28,13 +53,31 @@ const Head = () => {
         </a>
       </div>
       <div className="col-span-10 px-10">
-        <input
-          className="w-1/2 border border-grap-400 p-2 rounded-l-full"
-          placeholder="Search"
-        />
-        <button className="bg-gray-100 border border-grap-400 px-5 py-2 rounded-r-full">
-          🔍
-        </button>
+        <div>
+          <input
+            className="w-1/2 border border-grap-400 p-2 rounded-l-full"
+            placeholder="Search"
+            type="text"
+            onChange={(e) => setSearchQuery(e.target.value)}
+            value={searchQuery}
+            onBlur={() => setShowSuggestions(false)}
+            onFocus={() => setShowSuggestions(true)}
+          />
+          <button className="bg-gray-100 border border-grap-400 px-5 py-2 rounded-r-full">
+            🔍
+          </button>
+        </div>
+        {showSuggestions && searchSuggestions?.length > 0 && (
+          <div className="fixed bg-white px-5 py-2 w-[42.5rem] rounded-2xl shadow-lg border border-gray-100">
+            <ul>
+              {searchSuggestions.map((item) => (
+                <li className="hover:bg-gray-100 px-2 py-2" key={item}>
+                  🔍 {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
       <div className="col-span-1">
         <img
