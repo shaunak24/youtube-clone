@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toggleMenu } from '../utils/appSlice';
+import { cacheResults } from '../utils/searchSlice';
 import { YOUTUBE_SEARCH_SUGGESTIONS_API } from '../utils/constants';
 
 const Head = () => {
@@ -10,12 +11,19 @@ const Head = () => {
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const dispatch = useDispatch();
+  const searchCache = useSelector((store) => store.search);
 
   // debouncing
   useEffect(() => {
     // make API call after every key press
     // but decline it iff difference < 200ms
-    const timer = setTimeout(() => getSearchSuggestions(), 200);
+    const timer = setTimeout(() => {
+      if (searchCache[searchQuery]) {
+        setSearchSuggestions(searchCache[searchQuery]);
+      } else {
+        getSearchSuggestions();
+      }
+    }, 200);
     return () => {
       clearTimeout(timer);
     };
@@ -29,6 +37,7 @@ const Head = () => {
     const data = await fetch(YOUTUBE_SEARCH_SUGGESTIONS_API + searchQuery);
     const json = await data.json();
     setSearchSuggestions(json[1]);
+    dispatch(cacheResults({ [searchQuery]: json[1] }));
   };
 
   const toggleMenuHandler = () => {
