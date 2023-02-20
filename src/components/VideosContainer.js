@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { YOUTUBE_POPULAR_VIDEOS_API } from '../utils/constants';
 import VideoCard from './VideoCard';
 
-const VideoContainer = () => {
+const VideosContainer = () => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
@@ -27,4 +27,4 @@ const VideoContainer = () => {
   );
 };
 
-export default VideoContainer;
+export default VideosContainer;

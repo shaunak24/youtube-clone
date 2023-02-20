@@ -1,12 +1,12 @@
 import React from 'react';
 import ButtonList from './TagList';
-import VideoContainer from './VideoContainer';
+import VideosContainer from './VideosContainer';
 
 const MainContainer = () => {
   return (
     <div className="">
       <ButtonList />
-      <VideoContainer />
+      <VideosContainer />
     </div>
   );
 };
