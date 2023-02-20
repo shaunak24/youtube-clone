@@ -1,5 +1,4 @@
 import React from 'react';
-import Comment from './Comment';
 import { commentsData } from '../resources/mockCommentsData';
 import CommentsList from './CommentsList';
 
