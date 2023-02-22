@@ -19,3 +19,16 @@ What is debouncing?
 - Debouncing with 200ms
   - if difference between 2 key strokes < 200ms, decline API call
   - else make API call
+
+Building Live Chat
+
+- Challenges
+  - Fetching live data
+  - How to update the UI live?
+- We can handle live data using -
+  - Web sockets
+    - like a handshake (bi-directional) between server and client
+    - no specific time interval to receive data
+  - API Polling
+    - Data flows from server to client (Uni-directional)
+    - After a particular interval
