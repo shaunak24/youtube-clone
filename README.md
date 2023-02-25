@@ -1,3 +1,11 @@
+Quick Setup
+```
+git clone https://github.com/shaunak24/youtube-clone.git
+cd youtube-clone
+npm install
+npm start
+```
+
 Tips for Machine Coding Round -
 
 - Clarify the requirements. Never start coding directly (5 min)
