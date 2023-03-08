@@ -42,7 +42,7 @@ Building Live Chat
     - Data flows from server to client (Uni-directional)
     - After a particular interval
 
-Additional hooks
+Additional hooks (useMemo, useCallback, useRef)
 
 - useMemo is a React Hook that lets you cache the result of a calculation between re-renders
 - To avoid heavy operations for every (unrelated) re-render, we place it inside useMemo
