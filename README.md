@@ -1,4 +1,5 @@
 Quick Setup
+
 ```
 git clone https://github.com/shaunak24/youtube-clone.git
 cd youtube-clone
@@ -40,3 +41,15 @@ Building Live Chat
   - API Polling
     - Data flows from server to client (Uni-directional)
     - After a particular interval
+
+Additional hooks
+
+- useMemo is a React Hook that lets you cache the result of a calculation between re-renders
+- To avoid heavy operations for every (unrelated) re-render, we place it inside useMemo
+- Ex. const cachedValue = useMemo(calculateValue, dependencies);
+
+- useCallback is a React Hook that lets you cache a function definition between re-renders
+- Ex. const cachedFn = useCallback(fn, dependencies);
+
+- useRef is a React Hook that lets you reference a value that’s not needed for rendering
+- Ex. const ref = useRef(initialValue);
