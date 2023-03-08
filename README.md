@@ -52,4 +52,5 @@ Additional hooks (useMemo, useCallback, useRef)
 - Ex. const cachedFn = useCallback(fn, dependencies);
 
 - useRef is a React Hook that lets you reference a value that’s not needed for rendering
+- It is persisted between re-renders
 - Ex. const ref = useRef(initialValue);
