@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { toggleMenu } from '../utils/appSlice';
-import { cacheResults } from '../utils/searchSlice';
-import { YOUTUBE_SEARCH_SUGGESTIONS_API } from '../utils/constants';
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleMenu } from "../utils/appSlice";
+import { cacheResults } from "../utils/searchSlice";
+import { YOUTUBE_SEARCH_SUGGESTIONS_API } from "../utils/constants";
 
 const Head = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const dispatch = useDispatch();
