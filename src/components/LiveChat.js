@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import ChatMessage from './ChatMessage';
-import { addMessage } from '../utils/chatSlice';
-import { generateRandomMessage, generateRandomName } from '../utils/helper';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import ChatMessage from "./ChatMessage";
+import { addMessage } from "../utils/chatSlice";
+import { generateRandomMessage, generateRandomName } from "../utils/helper";
 
 const LiveChat = () => {
   const [liveMsg, setLiveMsg] = useState();
@@ -11,7 +11,7 @@ const LiveChat = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      console.log('API Polling');
+      console.log("API Polling");
       dispatch(
         addMessage({
           name: generateRandomName(),
@@ -21,12 +21,13 @@ const LiveChat = () => {
     }, 500);
 
     return () => clearInterval(timer);
+    // eslint-disable-next-line
   }, []);
 
   const sendMessage = (e) => {
     e.preventDefault();
-    dispatch(addMessage({ name: 'Shaunak', message: liveMsg }));
-    setLiveMsg('');
+    dispatch(addMessage({ name: "Shaunak", message: liveMsg }));
+    setLiveMsg("");
   };
 
   return (
